@@ -52,12 +52,15 @@ Alternatively you can use the gradlew like so:
     │  └── resources
     │     ├── application.yml                 # Common application configuration runnning using docker configs
     └── test
-        ├── java                              # Sample Testcases
-        └── resources
-            └── application-TEST.yml
+        └── java                              # Sample Testcases
+
 ```
 
-## Setup to run a local instance of Apache Kafka
+## Setup to run a local instance of Apache Kafka and Redis
+```shell
+docker-compose up
+```
+
 * Once Kafka still uses zookeeper as broker when using docker will be necessary to start them with docker-compose.
 
 * Starting leader-elector_zookeeper_1 ... done
