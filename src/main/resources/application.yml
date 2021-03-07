@@ -1,0 +1,47 @@
+server:
+  port: 0
+  servlet:
+    context-path: /api
+
+springdoc:
+  api-docs:
+    path: /docs/json
+  swagger-ui:
+    path: /docs
+
+spring:
+  application:
+    name: leader-selector
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 10000
+  cache:
+    type: REDIS
+    redis:
+      cache-null-values: false
+      use-key-prefix: true
+      key-prefix: library
+      time-to-live: 60000
+
+logging:
+  level:
+    root: INFO
+
+# ------------------------------------------------------------------------------
+# Custom properties
+kafka:
+  url: localhost:9092
+  topic:
+    publisher:
+      name: test
+    leadership-lost:
+      name: leadership-lost
+      consumer.group: lost
+    leadership-obtained:
+      name: leadership-obtained
+      consumer.group: obtained
+
+publish-interval-milliseconds: 5000
+default-caching-ttl-seconds: 10
+# ------------------------------------------------------------------------------

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: LOCAL://localhost:9092,DOCKER://host.docker.internal:9093
+      KAFKA_LISTENERS: LOCAL://0.0.0.0:9092,DOCKER://0.0.0.0:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LOCAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LOCAL
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_BROKER_ID: 1001
+      KAFKA_RESERVED_BROKER_MAX_ID: 1001
+      KAFKA_HEAP_OPTS: -Xms25m -Xmx512m
+    depends_on:
+      - "zookeeper"
+
+  redis:
+    image: redis:5.0.0-alpine
+    ports:
+      - "6379:6379"

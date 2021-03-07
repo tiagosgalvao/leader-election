@@ -1,0 +1,9 @@
+1. Create a SpringBoot project using Java or Kotlin, and Maven or Gradle * Kotlin, Gradle is the recommendation
+2. Using the docker-compose file provided to run Redis and Kafka
+3. Connect your SpringBoot application to the running Kafka and Redis instances
+4. Set the SpringBoot port to random
+   * port: 0 is random is SpringFramework
+5. Run multiple instances of your project and implement a leader election strategy using Redis
+   * Check the basic flowchart provided as a hint, or you can follow any other approaches
+6. Publish the server time as an object to Kafka every "publishInterval" seconds using the leader instance
+   * publishInterval should be a configurable parameter
